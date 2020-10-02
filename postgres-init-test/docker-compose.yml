@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - test-data:/var/lib/postgresql/data
+
+volumes:
+  test-data:
+    external: true
